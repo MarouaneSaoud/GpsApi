@@ -7,6 +7,9 @@ const app = express();
 const port = 3001;
 
 app.use(express.json());
+app.get('/', async (req, res) => {
+  res.send("Running ...")
+});
 
 app.get('/api/regrouped-data', async (req, res) => {
   try {
