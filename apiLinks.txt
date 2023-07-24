@@ -1,0 +1,7 @@
+https://api.thingspeak.com/channels/1053969/fields/2/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/3/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/4/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/3/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/5/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/6/last?api_key=TW9N2WQSI0AGG912
+https://api.thingspeak.com/channels/1053969/fields/7/last?api_key=TW9N2WQSI0AGG912
