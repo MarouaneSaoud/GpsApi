@@ -1,6 +1,6 @@
 const net = require('net');
 
-const TCP_PORT = 8080; // Port sur lequel le serveur écoute
+const TCP_PORT = 8090; // Port sur lequel le serveur écoute
 const GPS_UPDATE_INTERVAL = 5000; // Intervalle en millisecondes pour mettre à jour les données GPS
 
 const client = new net.Socket();
@@ -10,7 +10,7 @@ client.connect(TCP_PORT, 'localhost', () => {
   // Fonction pour envoyer les données GPS
   function sendGPSData() {
     const gpsData = {
-      imei: "3195131219",
+      imei: "1841891298",
       firmware: "03.27.13Rev03",
       config: "conf",
       lastSeen: getCurrentDateTime()
