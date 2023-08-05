@@ -96,6 +96,7 @@ tcpServer.listen(portTCP, () => {
 const httpServer = app.listen(portHTTP, () => {
   console.log(`Serveur HTTP en écoute sur le port ${portHTTP}`);
 });
+/*
 process.on('SIGINT', () => {
   console.log('Arrêt de l\'application. Sauvegarde des données...');
   // Videz les données du tableau avant de les enregistrer dans le fichier
@@ -109,4 +110,4 @@ process.on('SIGINT', () => {
       process.exit(0); // Quittez le processus avec un code de sortie 0 (sans erreur)
     }
   });
-});
+});*/
