@@ -26,7 +26,6 @@ function loadDevicesDataFromFile() {
   fs.readFile('devices.json', 'utf8', (err, data) => {
     if (!err) {
       devicesData = JSON.parse(data);
-      console.log('Données chargées à partir du fichier :', devicesData);
     }
   });
 }

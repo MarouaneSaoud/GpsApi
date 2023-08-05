@@ -12,7 +12,7 @@ client.connect(TCP_PORT, 'localhost', () => {
     const gpsData = {
       imei: "219653618",
       firmware: "03.27.13Rev03",
-      config: "conf",
+      config: "configtest",
       lastSeen: getCurrentDateTime()
     };
 
