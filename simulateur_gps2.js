@@ -1,6 +1,6 @@
 const net = require('net');
 
-const TCP_PORT = 8080; // Port sur lequel le serveur écoute
+const TCP_PORT = 8090; // Port sur lequel le serveur écoute
 const GPS_UPDATE_INTERVAL = 5000; // Intervalle en millisecondes pour mettre à jour les données GPS
 
 const client = new net.Socket();

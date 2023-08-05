@@ -5,7 +5,7 @@ const fs = require('fs'); // Ajout du module fs pour travailler avec les fichier
 
 let devicesData = { devices: [] };
 const app = express();
-const portTCP = 8080;
+const portTCP = 8090;
 const portHTTP = 3000;
 /*
 const allowedIP = '192.168.1.147'; // Remplacez par l'adresse IP autorisée
