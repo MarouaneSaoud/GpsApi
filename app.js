@@ -1,7 +1,7 @@
-const net = require('net');
-const express = require('express');
-const http = require('http');
-const fs = require('fs'); // Ajout du module fs pour travailler avec les fichiers
+const net = require("net");
+const express = require("express");
+const http = require("http");
+const fs = require("fs"); // Ajout du module fs pour travailler avec les fichiers
 
 let devicesData = { devices: [] };
 const app = express();
@@ -23,7 +23,7 @@ app.use((req, res, next) => {
 
 // Fonction pour charger les données à partir du fichier s'il existe
 function loadDevicesDataFromFile() {
-  fs.readFile('devices.json', 'utf8', (err, data) => {
+  fs.readFile("devices.json", "utf8", (err, data) => {
     if (!err) {
       devicesData = JSON.parse(data);
     }
@@ -35,18 +35,20 @@ loadDevicesDataFromFile();
 
 app.use(express.json());
 
-app.get('/devices', (req, res) => {
-  console.log('Requête GET reçue.');
+app.get("/devices", (req, res) => {
+  console.log("Requête GET reçue.");
   res.json(devicesData);
 });
 
-const tcpServer = net.createServer(socket => {
-  socket.on('data', data => {
+const tcpServer = net.createServer((socket) => {
+  socket.on("data", (data) => {
     try {
       const receivedData = JSON.parse(data.toString());
-      console.log('Données reçues via TCP:', receivedData);
+      console.log("Données reçues via TCP:", receivedData);
 
-      const index = devicesData.devices.findIndex(device => device.imei === receivedData.imei);
+      const index = devicesData.devices.findIndex(
+        (device) => device.imei === receivedData.imei
+      );
 
       if (index !== -1) {
         devicesData.devices[index] = {
@@ -64,27 +66,35 @@ const tcpServer = net.createServer(socket => {
         });
       }
 
-      console.log('Données rassemblées :', devicesData);
+      console.log("Données rassemblées :", devicesData);
 
       // Enregistrez les données dans le fichier
-      fs.writeFile('devices.json', JSON.stringify(devicesData), 'utf8', err => {
-        if (err) {
-          console.error('Erreur lors de l\'enregistrement des données dans le fichier:', err);
-        } else {
-          console.log('Données enregistrées dans le fichier.');
+      fs.writeFile(
+        "devices.json",
+        JSON.stringify(devicesData),
+        "utf8",
+        (err) => {
+          if (err) {
+            console.error(
+              "Erreur lors de l'enregistrement des données dans le fichier:",
+              err
+            );
+          } else {
+            console.log("Données enregistrées dans le fichier.");
+          }
         }
-      });
+      );
     } catch (error) {
-      console.error('Erreur de traitement des données :', error.message);
+      console.error("Erreur de traitement des données :", error.message);
     }
   });
 
-  socket.on('end', () => {
-    console.log('Client déconnecté.');
+  socket.on("end", () => {
+    console.log("Client déconnecté.");
   });
 
-  socket.on('error', err => {
-    console.error('Erreur de connexion:', err.message);
+  socket.on("error", (err) => {
+    console.error("Erreur de connexion:", err.message);
   });
 });
 
