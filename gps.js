@@ -16,7 +16,6 @@ const deviceSchema = new Schema({
   lastSeen: Date,
 }, {
   versionKey: false,
-  _id: false
 });
 
 // Connexion à la base de données MongoDB

@@ -33,7 +33,6 @@ const configSchema = new mongoose.Schema({
   smsPassword: String
 }, {
   versionKey: false,
-  _id: false
 });
 
 
