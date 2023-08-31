@@ -1,0 +1,32 @@
+{
+  "config": [
+    {
+      "Server IP": "0.0.0.0",
+      "Port": "80",
+      "Apn": "www.kezewepub.org",
+      "SMS Response": "16",
+      "Operating Mode": "0",
+      "P.Stop": "20",
+      "Sending Interval": "72",
+      "Angle": "62",
+      "S.D.M": "0",
+      "wifiPassword": "Ut ducimus beatae e",
+      "smsPassword": "123456",
+      "imei": "319528549"
+    },
+    {
+      "Server IP": "0.0.0.0",
+      "Port": "80",
+      "Apn": "www.kezewepub.org",
+      "SMS Response": "16",
+      "Operating Mode": "0",
+      "P.Stop": "20",
+      "Sending Interval": "72",
+      "Angle": "62",
+      "S.D.M": "0",
+      "wifiPassword": "Ut ducimus beatae e",
+      "smsPassword": "123456",
+      "imei": "869556064778773"
+    }
+  ]
+}

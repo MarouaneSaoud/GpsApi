@@ -1,1 +1,124 @@
-{"devices":[{"imei":"1841891298","firmware":"03.27.13Rev03","config":"conf","lastSeen":"07-08-2023-19-54"},{"imei":"319528549","firmware":"03.27.13Rev03","config":"conf","lastSeen":"07-08-2023-19-54"},{"imei":"1841891299","firmware":"03.27.13Rev03","config":"conf","lastSeen":"05-08-2023-22-22"},{"imei":"1841891110","firmware":"03.27.13Rev03","config":"conf","lastSeen":"05-08-2023-22-22"},{"imei":"1986452","firmware":"03.27.13Rev03","config":"conf","lastSeen":"08-08-2023-11-34"}]}
+{
+  "devices": [
+    {
+      "imei": "319528549",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/30,12:34"
+    },
+    {
+      "imei": "1841891298",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/30,12:34"
+    },
+    {
+      "imei": "869556064778773",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/30,12:34"
+    },
+    {
+      "imei": "111111111111110",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/30,12:34"
+    },
+    {
+      "imei": "111111111111111",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111112",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111113",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111114",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111115",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111116",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111117",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111118",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111119",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111120",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111121",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111122",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111123",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111124",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111125",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    },
+    {
+      "imei": "111111111111126",
+      "firmware": "03.27.13Rev03",
+      "config": "conf",
+      "lastSeen": "2023/08/18,15:07"
+    }
+  ]
+}
