@@ -53,7 +53,7 @@ app.post('/config', async (req, res) => {
   }
 });
 
-app.get('/config/:imei', async (req, res) => {
+/*app.get('/config/:imei', async (req, res) => {
   const imei = req.params.imei;
 
   try {
@@ -62,6 +62,40 @@ app.get('/config/:imei', async (req, res) => {
     if (config) {
       const { _id, ...configWithoutId } = config._doc;
       res.status(200).json(configWithoutId);
+    } else {
+      res.status(404).send('Config not found');
+    }
+  } catch (error) {
+    console.error('Error getting config:', error);
+    res.status(500).send('Error getting config');
+  }
+});
+*/
+app.get('/config/:imei', async (req, res) => {
+  const imei = req.params.imei;
+
+  try {
+    const config = await Config.findOne({ imei });
+
+    if (config) {
+      const order = [
+        'serverIp',
+        'port',
+        'apn',
+        'smsResponse',
+        'mode',
+        'pStop',
+        'sendingInterval',
+        'angle',
+        'sdm',
+        'wifiPassword',
+        'smsPassword'
+      ];
+
+      const valuesInOrder = order.map(key => config._doc[key]);
+      const valuesSeparatedByComma = valuesInOrder.join(',');
+
+      res.status(200).send(valuesSeparatedByComma);
     } else {
       res.status(404).send('Config not found');
     }

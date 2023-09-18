@@ -13,13 +13,13 @@ const deviceSchema = new Schema({
   imei: String,
   firmware: String,
   config: Object,
-  lastSeen: Date,
+  lastSeen: String,
 }, {
   versionKey: false,
 });
 
 // Connexion à la base de données MongoDB
-mongoose.connect("mongodb://localhost:27017/numotronic_db", {
+mongoose.connect("mongodb://127.0.0.1:27017/numotronic_db", {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
@@ -82,16 +82,3 @@ tcpServer.listen(portTCP, () => {
 const httpServer = app.listen(portHTTP, () => {
   console.log(`Serveur HTTP en écoute sur le port ${portHTTP}`);
 });
-
-
-/*const allowedIP = '192.168.1.147'; // Remplacez par l'adresse IP autorisée
-// Middleware pour vérifier l'adresse IP avant chaque requête
-app.use((req, res, next) => {
-  const clientIP = req.ip; // Récupère l'adresse IP du client
-  if (clientIP !== allowedIP) {
-    // Si l'adresse IP du client ne correspond pas à l'adresse IP autorisée
-    return res.status(403).send('Accès interdit.'); // Répond avec une erreur 403 (Accès interdit)
-  }
-  next(); // Si l'adresse IP est autorisée, passez à la suite du traitement
-});
-*/

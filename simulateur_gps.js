@@ -10,7 +10,7 @@ client.connect(TCP_PORT, 'localhost', () => {
   // Fonction pour envoyer les données GPS
   function sendGPSData() {
     const gpsData = {
-      imei: "319528549",
+      imei: "111111111111113",
       firmware: "03.27.13Rev03",
       config: "conf",
       lastSeen: getCurrentDateTime()
