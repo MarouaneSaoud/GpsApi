@@ -1,0 +1,13 @@
+{
+    "name": "GpsScript", 
+    "script": "gps.js", 
+    "node_args": [],
+    "args": [],
+    "log_date_format": "YYYY-MM-DD HH:mm:ss",
+    "exec_mode": "fork_mode",
+    "max_memory_restart": "300M",
+    "error_file": "script1-error.log", 
+    "out_file": "script1-output.log", 
+    "merge_logs": true
+  }
+  
