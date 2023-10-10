@@ -4,13 +4,13 @@ const TCP_PORT = 10200; // Port sur lequel le serveur écoute
 const GPS_UPDATE_INTERVAL = 5000; // Intervalle en millisecondes pour mettre à jour les données GPS
 
 const client = new net.Socket();
-client.connect(TCP_PORT, '154.144.247.110', () => {
+client.connect(TCP_PORT, '38.242.222.233', () => {
   console.log('Connecté au serveur TCP');
 
   // Fonction pour envoyer les données GPS
   function sendGPSData() {
     const gpsData = {
-      imei: "869556064778773",
+      imei: "86556064862452",
       firmware: "03.27.13Rev03",
       config: "conf",
       lastSeen: getCurrentDateTime()
@@ -20,7 +20,6 @@ client.connect(TCP_PORT, '154.144.247.110', () => {
     client.write(jsonData);
   }
 
-  // Mettre à jour les données GPS périodiquement
   setInterval(sendGPSData, GPS_UPDATE_INTERVAL);
 });
 

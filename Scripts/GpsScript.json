@@ -1,5 +1,5 @@
 {
-    "name": "GpsScript", 
+    "name": "gpsScript", 
     "script": "gps.js", 
     "node_args": [],
     "args": [],

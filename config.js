@@ -2,16 +2,18 @@ const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const net = require('net');
 
 const app = express();
-const PORT = 3001;
+const PORT_HTTP = 3001;
+const TCP_PORT = 3002;
 
 app.use(bodyParser.json());
 app.use(cors());
 
-mongoose.connect('mongodb://localhost:27017/numotronic_db', {
+mongoose.connect('mongodb://127.0.0.1:27017/numotronic_db', {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
+  useUnifiedTopology: true, 
 });
 
 const configSchema = new mongoose.Schema({
@@ -30,11 +32,14 @@ const configSchema = new mongoose.Schema({
   angle: Number,
   sdm: Number,
   wifiPassword: String,
-  smsPassword: String
+  smsPassword: String,
+  version: {
+    type: Number,
+    default: 1
+  }
 }, {
   versionKey: false,
 });
-
 
 const Config = mongoose.model('Config', configSchema);
 
@@ -42,6 +47,12 @@ app.post('/config', async (req, res) => {
   const newConfig = req.body;
 
   try {
+    const existingConfig = await Config.findOne({ imei: newConfig.imei });
+
+    if (existingConfig) {
+      newConfig.version = existingConfig.version + 1;
+    }
+
     await Config.findOneAndUpdate({ imei: newConfig.imei }, newConfig, {
       upsert: true,
     });
@@ -53,58 +64,76 @@ app.post('/config', async (req, res) => {
   }
 });
 
-/*app.get('/config/:imei', async (req, res) => {
-  const imei = req.params.imei;
 
+
+const tcpServer = net.createServer((socket) => {
+  socket.on('data', async (data) => {
+    const imei = data.toString().trim();
+
+    try {
+      const config = await Config.findOne({ imei });
+
+      if (config) {
+        const order = [
+          'serverIp',
+          'port',
+          'apn',
+          'smsResponse',
+          'mode',
+          'pStop',
+          'sendingInterval',
+          'angle',
+          'sdm',
+          'wifiPassword',
+          'smsPassword',
+          'version',
+        ];
+
+        const orderedConfig = {};
+        order.forEach((key) => {
+          orderedConfig[key] = config._doc[key];
+        });
+
+        const configString = Object.values(orderedConfig).join(',');
+        socket.write(configString);
+      } else {
+        socket.write('Config not found');
+      }
+    } catch (error) {
+      console.error('Error getting config:', error);
+      socket.write('Error getting config');
+    }
+  });
+});
+
+app.get('/configs', async (req, res) => {
   try {
-    const config = await Config.findOne({ imei });
+    const configs = await Config.find();
 
-    if (config) {
-      const { _id, ...configWithoutId } = config._doc;
-      res.status(200).json(configWithoutId);
+    if (configs.length > 0) {
+      // Retournez tous les configs en tant que tableau JSON
+      const configsWithoutIds = configs.map(config => {
+        const { _id, ...configWithoutId } = config._doc;
+        return configWithoutId;
+      });
+
+      res.status(200).json(configsWithoutIds);
     } else {
-      res.status(404).send('Config not found');
+      res.status(404).send('No configs found');
     }
   } catch (error) {
-    console.error('Error getting config:', error);
-    res.status(500).send('Error getting config');
-  }
-});
-*/
-app.get('/config/:imei', async (req, res) => {
-  const imei = req.params.imei;
-
-  try {
-    const config = await Config.findOne({ imei });
-
-    if (config) {
-      const order = [
-        'serverIp',
-        'port',
-        'apn',
-        'smsResponse',
-        'mode',
-        'pStop',
-        'sendingInterval',
-        'angle',
-        'sdm',
-        'wifiPassword',
-        'smsPassword'
-      ];
-
-      const valuesInOrder = order.map(key => config._doc[key]);
-      const valuesSeparatedByComma = valuesInOrder.join(',');
-
-      res.status(200).send(valuesSeparatedByComma);
-    } else {
-      res.status(404).send('Config not found');
-    }
-  } catch (error) {
-    console.error('Error getting config:', error);
-    res.status(500).send('Error getting config');
+    console.error('Error getting configs:', error);
+    res.status(500).send('Error getting configs');
   }
 });
 
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
+
+tcpServer.listen(TCP_PORT, () => {
+  console.log(`TCP Server is running on port ${TCP_PORT}`);
 });
+
+app.listen(PORT_HTTP, () => {
+  console.log(`HTTP Server is running on port ${PORT_HTTP}`);
+});
+
+

@@ -1,5 +1,5 @@
 {
-    "name": "ConfigScript", 
+    "name": "configScript", 
     "script": "config.js", 
     "node_args": [],
     "args": [],
