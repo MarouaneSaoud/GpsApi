@@ -22,6 +22,7 @@ const configSchema = new mongoose.Schema({
     unique: true,
     required: true
   },
+  fileName: String,
   serverIp: String,
   port: Number,
   apn: String,
@@ -87,6 +88,7 @@ const tcpServer = net.createServer((socket) => {
           'wifiPassword',
           'smsPassword',
           'version',
+          'fileName'
         ];
 
         const orderedConfig = {};
@@ -95,7 +97,8 @@ const tcpServer = net.createServer((socket) => {
         });
 
         const configString = Object.values(orderedConfig).join(',');
-        socket.write(configString);
+        const finalConfigString = `#${configString}#`;
+        socket.write(finalConfigString);
       } else {
         socket.write('Config not found');
       }
@@ -105,13 +108,52 @@ const tcpServer = net.createServer((socket) => {
     }
   });
 });
+app.get('/config/:imei', async (req, res) => {
+  const imei = req.params.imei;
+
+  try {
+    const config = await Config.findOne({ imei });
+
+    if (config) {
+      const order = [
+        'serverIp',
+        'port',
+        'apn',
+        'smsResponse',
+        'mode',
+        'pStop',
+        'sendingInterval',
+        'angle',
+        'sdm',
+        'wifiPassword',
+        'smsPassword',
+        'version',
+        'fileName'
+      ];
+
+      const orderedConfig = {};
+      order.forEach((key) => {
+        orderedConfig[key] = config._doc[key];
+      });
+
+      const configString = Object.values(orderedConfig).join(',');
+      const finalConfigString = `#${configString}#`;
+      res.status(200).send(finalConfigString);
+    } else {
+      res.status(404).send('Config not found');
+    }
+  } catch (error) {
+    console.error('Error getting config:', error);
+    res.status(500).send('Error getting config');
+  }
+});
+
 
 app.get('/configs', async (req, res) => {
   try {
     const configs = await Config.find();
 
     if (configs.length > 0) {
-      // Retournez tous les configs en tant que tableau JSON
       const configsWithoutIds = configs.map(config => {
         const { _id, ...configWithoutId } = config._doc;
         return configWithoutId;

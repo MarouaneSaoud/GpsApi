@@ -1,11 +1,10 @@
 const net = require('net');
-
 const TCP_PORT = 3002; 
-const GPS_IMEI = '11111111111112'; 
+const GPS_IMEI = '86556064862452'; 
 
 const client = new net.Socket();
 
-client.connect(TCP_PORT, 'localhost', () => {
+client.connect(TCP_PORT, '127.0.0.1', () => {
   console.log('Simulated GPS connected to server');
   client.write(GPS_IMEI);
 });
